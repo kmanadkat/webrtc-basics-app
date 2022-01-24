@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Chat Application</title>
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="video-chat-lobby">
+      <h2 class="text">Video Chat Application</h2>
+      <input id="roomName" type="text" placeholder="Room Name" />
+      <button id="join">Join</button>
+    </div>
+    <div id="video-chat-room">
+      <video id="user-video"></video>
+      <video id="peer-video"></video>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+      integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./chat.js"></script>
+  </body>
+</html>
