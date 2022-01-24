@@ -1,4 +1,6 @@
-const socket = io.connect("http://192.168.0.112:8000", { secure: true });
+const socket = io.connect("https://krupesh-web-rtc-demo.herokuapp.com", {
+  secure: true,
+});
 
 // DOM elements
 const videoChatLobby = document.getElementById("video-chat-lobby");
