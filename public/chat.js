@@ -105,14 +105,14 @@ socket.on("joined", () => {
 
 //
 //
-//
+// Room full - donot allow more users to join
 socket.on("full", () => {
   alert("Room is full, can't join");
 });
 
 //
 //
-//
+// When Peer has joined
 socket.on("ready", () => {
   // debugger;
   if (roomCreator) {
@@ -125,10 +125,6 @@ socket.on("ready", () => {
       currentUserStream.getTracks()[0],
       currentUserStream
     );
-    // rtcPeerConnection.addTrack(
-    //   currentUserStream.getTracks()[1],
-    //   currentUserStream
-    // );
 
     // Create Offer
     rtcPeerConnection
@@ -145,7 +141,7 @@ socket.on("ready", () => {
 
 //
 //
-//
+// For Peer i.e. Not Room Creator
 socket.on("offer", (offer) => {
   // debugger;
   if (!roomCreator) {
@@ -161,12 +157,8 @@ socket.on("offer", (offer) => {
       currentUserStream.getTracks()[0],
       currentUserStream
     );
-    // rtcPeerConnection.addTrack(
-    //   currentUserStream.getTracks()[1],
-    //   currentUserStream
-    // );
 
-    // Create Offer
+    // Create Answer
     rtcPeerConnection
       .createAnswer()
       .then((answer) => {
@@ -181,7 +173,7 @@ socket.on("offer", (offer) => {
 
 //
 //
-//
+// Add Ice Candidate of Peer
 socket.on("candidate", (candidate) => {
   const iceCandidate = new RTCIceCandidate(candidate);
   rtcPeerConnection.addIceCandidate(iceCandidate);
@@ -189,8 +181,7 @@ socket.on("candidate", (candidate) => {
 
 //
 //
-//
+// Set Incoming Answer as Remote Description
 socket.on("answer", (answer) => {
-  // Set Incoming Answer as Remote Description
   rtcPeerConnection.setRemoteDescription(answer);
 });
